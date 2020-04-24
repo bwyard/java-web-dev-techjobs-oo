@@ -92,25 +92,4 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
-
-    @Override
-    public String toString() {
-        String jobString;
-        if(name == null){
-            return "OOPS! This job does not seem to exist.";
-        }
-        if (name.equals("")){ name = "Data not available";}
-        if (employer.getValue() == null || employer.getValue().equals("")){ employer.setValue("Data not available");}
-        if (location.getValue() == null || location.getValue().equals("")){ location.setValue("Data not available");}
-        if (positionType.getValue() == null || positionType.getValue().equals("")) {positionType.setValue("Data not available");}
-        if (coreCompetency.getValue() == null || coreCompetency.getValue().equals("")) {coreCompetency.setValue("Data not available");}
-
-        jobString = String.format("\nID: %d\n"+
-                "Name: %s\n"+
-                "Employer: %s\n"+
-                "Location: %s\n"+
-                "Position Type: %s\n"+
-                "Core Competency: %s\n",id,name,employer,location,positionType, coreCompetency+"\n" );
-        return jobString;
-    }
 }
