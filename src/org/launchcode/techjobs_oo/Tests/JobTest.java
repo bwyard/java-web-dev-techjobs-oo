@@ -7,23 +7,25 @@ import org.launchcode.techjobs_oo.*;
 import static org.junit.Assert.*;
 
 public class JobTest {
-    Job test_JobOne;
-    Job test_JobTwo;
+    Job idJobOne;
+    Job idJobTwo;
     Job jobTest;
     Job jobTestTwo;
+    Job jobTestBlank;
 
     @Before
     public void createTwoJobObject(){
-        test_JobOne = new Job();
-        test_JobTwo = new Job();
+        idJobOne = new Job();
+        idJobTwo = new Job();
         jobTest = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         jobTestTwo = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        jobTestBlank = new Job("Product tester", new Employer(""), new Location("pop"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
     }
 
     @Test
     public void testSettingJobId(){
 
-        assertEquals(test_JobOne.getId(),test_JobTwo.getId()-test_JobOne.getId(),0);
+        assertEquals(1,idJobTwo.getId()-idJobOne.getId());
 
     }
     @Test
@@ -47,5 +49,27 @@ public class JobTest {
         assertTrue(jobTest.toString().startsWith("\n"));
         assertTrue(jobTest.toString().endsWith("\n"));
     }
+    @Test
+    public void testJobFields(){
+        assertTrue(jobTest.toString().contains("\nID:"));
+        assertTrue(jobTest.toString().contains("\nName:"));
+        assertTrue(jobTest.toString().contains("\nEmployer:"));
+        assertTrue(jobTest.toString().contains("\nLocation:"));
+        assertTrue(jobTest.toString().contains("\nPosition Type:"));
+        assertTrue(jobTest.toString().contains("\nCore Competency:"));
+    }
+
+    @Test
+    public void testJobBlankField(){
+        assertTrue(jobTestBlank.toString().contains("Data not available"));
+    }
+
+    @Test
+    public void testOnlyIdExists(){
+        assertEquals("OOPS! This job does not seem to exist.", idJobOne.toString());
+    }
+
+
+
 
 }
